@@ -12,5 +12,10 @@
             this.tab = tab;
             this.cor = cor;          
         }
+
+        public void movimentar()
+        {
+            qtdMovimentos++;
+        }
     }
 }
