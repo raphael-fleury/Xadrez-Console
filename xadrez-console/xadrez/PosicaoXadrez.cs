@@ -13,6 +13,9 @@ namespace xadrez
             this.linha = linha;
         }
 
+        public PosicaoXadrez(Posicao pos) : 
+            this((char)('A' + pos.coluna), 8 - pos.linha) { }
+
         public Posicao toPosicao()
         {
             return new Posicao(8 - linha, coluna - 'A');

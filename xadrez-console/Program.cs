@@ -14,14 +14,31 @@ namespace xadrez_console
             {
                 Console.Clear();
                 Tela.ImprimirTabuleiro(partida.tab);
+                Console.WriteLine();
 
-                Console.Write("Digite a posição de origem: ");
-                Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
+                try
+                {
+                    Console.Write("Digite a posição de origem: ");
+                    Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
 
-                Console.Write("Digite a posição de destino: ");
-                Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
+                    Peca peca = partida.tab.peca(origem);
+                    bool[,] posicoesPossiveis = peca.movimentosPossiveis();
 
-                partida.executarMovimento(origem, destino);
+                    Console.Clear();
+                    Tela.ImprimirTabuleiro(partida.tab, posicoesPossiveis);
+
+                    Console.WriteLine($"\nPeça selecionada: {peca} ({new PosicaoXadrez(origem)})");
+                    Console.Write("Digite a posição de destino: ");
+                    Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
+
+                    partida.executarMovimento(origem, destino);
+                }
+                catch (Exception e)
+                {
+                    Console.Clear();
+                    Tela.ImprimirTabuleiro(partida.tab);
+                    Console.Write("Erro. " + e.Message);
+                }
             }
 
             Console.ReadKey();

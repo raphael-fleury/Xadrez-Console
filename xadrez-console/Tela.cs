@@ -13,12 +13,32 @@ namespace xadrez_console
                 Console.Write(tab.linhas - y + " ");
                 for (int x = 0; x < tab.colunas; x++)
                 {
-                    if (tab.peca(y, x) == null)
-                        Console.Write("-");
-                    else
-                        ImprimirPeca(tab.peca(y, x));
-
+                    ImprimirPeca(tab.peca(y, x));
                     Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("  A B C D E F G H");
+        }
+
+        public static void ImprimirTabuleiro(Tabuleiro tab, bool[,] posicoesPossiveis)
+        {
+            ConsoleColor fundoOriginal = Console.BackgroundColor;
+            ConsoleColor fundoAlterado = ConsoleColor.DarkGray;
+
+            for (int y = 0; y < tab.linhas; y++)
+            {
+                Console.Write(tab.linhas - y + " ");
+                for (int x = 0; x < tab.colunas; x++)
+                {
+                    if (posicoesPossiveis[y, x])
+                        Console.BackgroundColor = fundoAlterado;
+                    else
+                        Console.BackgroundColor = fundoOriginal;
+
+                    ImprimirPeca(tab.peca(y, x));
+                    Console.Write(" ");
+                    Console.BackgroundColor = fundoOriginal;
                 }
                 Console.WriteLine();
             }
@@ -33,20 +53,25 @@ namespace xadrez_console
 
         public static void ImprimirPeca(Peca peca)
         {
-            ConsoleColor defaultColor = Console.ForegroundColor;
-            switch (peca.cor)
+            if (peca == null)
+                Console.Write("-");
+            else
             {
-                case Cor.BRANCA:
-                    Console.ForegroundColor = ConsoleColor.White;
-                    break;
-                case Cor.PRETA:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    break;
-                default:
-                    break;
+                ConsoleColor defaultColor = Console.ForegroundColor;
+                switch (peca.cor)
+                {
+                    case Cor.BRANCA:
+                        Console.ForegroundColor = ConsoleColor.White;
+                        break;
+                    case Cor.PRETA:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        break;
+                    default:
+                        break;
+                }
+                Console.Write(peca);
+                Console.ForegroundColor = defaultColor;
             }
-            Console.Write(peca);
-            Console.ForegroundColor = defaultColor;
         }
     }
 }

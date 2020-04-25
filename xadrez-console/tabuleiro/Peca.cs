@@ -1,6 +1,6 @@
 ﻿namespace tabuleiro
 {
-    class Peca
+    abstract class Peca
     {
         public Posicao posicao { get; set; }
         public Cor cor { get; protected set; }
@@ -17,5 +17,13 @@
         {
             qtdMovimentos++;
         }
+
+        protected bool podeMover(Posicao pos)
+        {
+            Peca p = tab.peca(pos);
+            return p == null || p.cor != cor;
+        }
+
+        public abstract bool[,] movimentosPossiveis();
     }
 }
