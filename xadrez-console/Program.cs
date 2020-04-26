@@ -12,14 +12,16 @@ namespace xadrez_console
 
             while (!partida.terminada)
             {
-                Console.Clear();
-                Tela.ImprimirTabuleiro(partida.tab);
-                Console.WriteLine();
-
                 try
                 {
+                    Console.Clear();
+                    Tela.ImprimirTabuleiro(partida.tab);
+                    Console.WriteLine("\nTurno " + partida.turno);
+                    Console.WriteLine("Aguardando jogador " + partida.jogadorAtual + "\n");
+
                     Console.Write("Digite a posição de origem: ");
                     Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
+                    partida.validarPosicaoDeOrigem(origem);
 
                     Peca peca = partida.tab.peca(origem);
                     bool[,] posicoesPossiveis = peca.movimentosPossiveis();
@@ -30,14 +32,27 @@ namespace xadrez_console
                     Console.WriteLine($"\nPeça selecionada: {peca} ({new PosicaoXadrez(origem)})");
                     Console.Write("Digite a posição de destino: ");
                     Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
+                    partida.validarPosicaoDeDestino(origem, destino);
 
-                    partida.executarMovimento(origem, destino);
+                    partida.realizarJogada(origem, destino);
                 }
-                catch (Exception e)
+                catch (TabuleiroException e)
                 {
                     Console.Clear();
                     Tela.ImprimirTabuleiro(partida.tab);
-                    Console.Write("Erro. " + e.Message);
+                    Console.WriteLine();
+                    Tela.ImprimirErro(e);
+                    Console.WriteLine("Aperte alguma tecla para continuar...");
+                    Console.ReadKey();
+                }
+                catch (Exception)
+                {
+                    Console.Clear();                   
+                    Tela.ImprimirTabuleiro(partida.tab);
+                    Console.WriteLine();
+                    Tela.ImprimirErro("Erro.");
+                    Console.WriteLine("Aperte alguma tecla para continuar...");
+                    Console.ReadKey();
                 }
             }
 

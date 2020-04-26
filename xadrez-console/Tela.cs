@@ -60,10 +60,10 @@ namespace xadrez_console
                 ConsoleColor defaultColor = Console.ForegroundColor;
                 switch (peca.cor)
                 {
-                    case Cor.BRANCA:
+                    case Cor.BRANCO:
                         Console.ForegroundColor = ConsoleColor.White;
                         break;
-                    case Cor.PRETA:
+                    case Cor.PRETO:
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         break;
                     default:
@@ -72,6 +72,19 @@ namespace xadrez_console
                 Console.Write(peca);
                 Console.ForegroundColor = defaultColor;
             }
+        }
+
+        public static void ImprimirErro(string erro)
+        {
+            ConsoleColor defaultColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(erro);
+            Console.ForegroundColor = defaultColor;
+        }
+
+        public static void ImprimirErro(Exception e)
+        {
+            ImprimirErro("Erro. " + e.Message);
         }
     }
 }

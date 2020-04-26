@@ -24,6 +24,21 @@
             return p == null || p.cor != cor;
         }
 
+        public bool podeMoverPara(Posicao pos)
+        {
+            return movimentosPossiveis()[pos.linha, pos.coluna];
+        }
+
+        public bool existeMovimentosPossiveis()
+        {
+            bool[,] matriz = movimentosPossiveis();
+
+            foreach(bool b in matriz)
+                if (b) { return true; }     
+
+            return false;
+        }
+
         public abstract bool[,] movimentosPossiveis();
     }
 }
