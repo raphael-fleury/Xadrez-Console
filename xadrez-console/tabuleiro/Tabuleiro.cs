@@ -20,7 +20,7 @@
 
         public Peca peca(Posicao pos)
         {
-            return peca(pos.linha, pos.coluna);
+            return pecas[pos.linha, pos.coluna];
         }
 
         public bool existePeca(Posicao pos)

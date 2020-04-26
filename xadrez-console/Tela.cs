@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using tabuleiro;
 using xadrez;
 
@@ -6,6 +7,36 @@ namespace xadrez_console
 {
     class Tela
     {
+        public static PosicaoXadrez lerPosicaoXadrez()
+        {
+            string s = Console.ReadLine();
+            return new PosicaoXadrez(s[0], int.Parse(s[1] + ""));
+        }
+
+        public static void Imprimir(object obj, ConsoleColor cor)
+        {
+            ConsoleColor defaultColor = Console.ForegroundColor;
+            Console.ForegroundColor = cor;
+            Console.Write(obj);
+            Console.ForegroundColor = defaultColor;
+        }
+
+        public static void ImprimirLinha(object obj, ConsoleColor cor)
+        {
+            Imprimir(obj + "\n", cor);
+        }
+
+        public static void ImprimirPartida(PartidaDeXadrez partida)
+        {
+            Console.Clear();
+            ImprimirTabuleiro(partida.tab);
+            Console.WriteLine();
+            ImprimirPecasCapturadas(partida);
+            Console.WriteLine();
+            Console.WriteLine("Turno " + partida.turno);
+            Console.WriteLine("Aguardando jogador " + partida.jogadorAtual + "\n");
+        }
+
         public static void ImprimirTabuleiro(Tabuleiro tab)
         {
             for (int y = 0; y < tab.linhas; y++)
@@ -45,10 +76,25 @@ namespace xadrez_console
             Console.WriteLine("  A B C D E F G H");
         }
 
-        public static PosicaoXadrez lerPosicaoXadrez()
+        public static void ImprimirPecasCapturadas(PartidaDeXadrez partida)
         {
-            string s = Console.ReadLine();
-            return new PosicaoXadrez(s[0], int.Parse(s[1] + ""));
+            ImprimirLinha("Peças capturadas", ConsoleColor.Yellow);
+            Console.Write("Brancas: ");
+            ImprimirConjunto(partida.pecasCapturadas(Cor.BRANCO));
+            Console.WriteLine();
+            Console.Write("Pretas:  ");
+            ImprimirConjunto(partida.pecasCapturadas(Cor.PRETO));
+            Console.WriteLine();
+        }
+
+        public static void ImprimirConjunto(HashSet<Peca> conjunto)
+        {
+            Console.Write("[");
+            foreach (Peca peca in conjunto)
+            {
+                Imprimir(" " + peca, peca.cor == Cor.BRANCO ? ConsoleColor.White : ConsoleColor.Yellow);
+            }
+            Console.Write(" ]");
         }
 
         public static void ImprimirPeca(Peca peca)
@@ -76,10 +122,10 @@ namespace xadrez_console
 
         public static void ImprimirErro(string erro)
         {
-            ConsoleColor defaultColor = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(erro);
-            Console.ForegroundColor = defaultColor;
+            Console.WriteLine();
+            ImprimirLinha(erro, ConsoleColor.Red);
+            Console.WriteLine("Aperte alguma tecla para continuar...");
+            Console.ReadKey();            
         }
 
         public static void ImprimirErro(Exception e)
