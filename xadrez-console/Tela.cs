@@ -35,6 +35,8 @@ namespace xadrez_console
             Console.WriteLine();
             Console.WriteLine("Turno " + partida.turno);
             Console.WriteLine("Aguardando jogador " + partida.jogadorAtual + "\n");
+            if (partida.xeque)
+                Console.WriteLine("Xeque!");
         }
 
         public static void ImprimirTabuleiro(Tabuleiro tab)

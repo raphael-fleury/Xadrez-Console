@@ -13,9 +13,14 @@
             this.cor = cor;          
         }
 
-        public void movimentar()
+        public void incrementarMovimentos()
         {
             qtdMovimentos++;
+        }
+
+        public void decrementarMovimentos()
+        {
+            qtdMovimentos--;
         }
 
         protected bool podeMover(Posicao pos)
