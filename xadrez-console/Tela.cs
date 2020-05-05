@@ -39,6 +39,14 @@ namespace xadrez_console
                 Console.WriteLine("Xeque!");
         }
 
+        public static void ImprimirVitoria(PartidaDeXadrez partida)
+        {
+            Console.Clear();
+            ImprimirTabuleiro(partida.tab);
+            Console.WriteLine();
+            Console.WriteLine("Xequemate! O jogador " + partida.jogadorAtual + " venceu!");
+        }
+
         public static void ImprimirTabuleiro(Tabuleiro tab)
         {
             for (int y = 0; y < tab.linhas; y++)

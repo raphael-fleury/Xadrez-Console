@@ -47,6 +47,7 @@ namespace xadrez_console
                 }
             }
 
+            Tela.ImprimirVitoria(partida);
             Console.ReadKey();
         }
     }
