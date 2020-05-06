@@ -35,6 +35,14 @@ namespace xadrez_console
                         if (rei.roqueGrandeDisponivel())
                             Tela.Imprimir("Roque grande disponível!\n", ConsoleColor.Green);
                     }
+                    else if (peca is Peao)
+                    {
+                        Peao peao = (Peao)peca;
+                        if (peao.enPassantEsquerdaDisponivel())
+                            Tela.Imprimir("En passant à esquerda disponível!\n", ConsoleColor.Green);
+                        if (peao.enPassantDireitaDisponivel())
+                            Tela.Imprimir("En passant à direita disponível!\n", ConsoleColor.Green);
+                    }
 
                     Console.Write("Digite a posição de destino: ");
                     Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
