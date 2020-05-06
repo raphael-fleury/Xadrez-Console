@@ -25,8 +25,7 @@
 
         protected bool podeMover(Posicao pos)
         {
-            Peca p = tab.peca(pos);
-            return p == null || p.cor != cor;
+            return tab.peca(pos) == null || tab.peca(pos).cor != cor;
         }
 
         public bool podeMoverPara(Posicao pos)

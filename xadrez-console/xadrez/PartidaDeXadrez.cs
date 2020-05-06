@@ -65,7 +65,7 @@ namespace xadrez
         {
             Peca r = rei(cor);
             if (r == null)
-                throw new TabuleiroException("Não há um rei da cor " + cor.ToString().ToLower() + "!");
+                throw new TabuleiroException("Não há um rei " + cor.ToString().ToLower() + "!");
 
             foreach (Peca p in pecasEmJogo(corAdversaria(cor)))
             {

@@ -2,52 +2,44 @@
 
 namespace xadrez
 {
-    class Rei : Peca
+    class Cavalo : Peca
     {
-        public Rei(Tabuleiro tab, Cor cor) : base(tab, cor) { }
+        public Cavalo(Tabuleiro tab, Cor cor) : base(tab, cor) { }
 
         public override bool[,] movimentosPossiveis()
         {
             bool[,] matriz = new bool[tab.linhas, tab.colunas];
             Posicao pos;
 
-            //acima
-            pos = new Posicao(posicao.linha - 1, posicao.coluna);
+            pos = new Posicao(posicao.linha - 2, posicao.coluna - 1);
             if (tab.posicaoValida(pos) && podeMover(pos))
                 matriz[pos.linha, pos.coluna] = true;
 
-            //abaixo
-            pos = new Posicao(posicao.linha + 1, posicao.coluna);
+            pos = new Posicao(posicao.linha - 2, posicao.coluna + 1);
             if (tab.posicaoValida(pos) && podeMover(pos))
                 matriz[pos.linha, pos.coluna] = true;
 
-            //esquerda
-            pos = new Posicao(posicao.linha, posicao.coluna - 1);
+            pos = new Posicao(posicao.linha - 1, posicao.coluna - 2);
             if (tab.posicaoValida(pos) && podeMover(pos))
                 matriz[pos.linha, pos.coluna] = true;
 
-            //direita
-            pos = new Posicao(posicao.linha, posicao.coluna + 1);
+            pos = new Posicao(posicao.linha - 1, posicao.coluna + 2);
             if (tab.posicaoValida(pos) && podeMover(pos))
                 matriz[pos.linha, pos.coluna] = true;
 
-            //noroeste
-            pos = new Posicao(posicao.linha - 1, posicao.coluna - 1);
+            pos = new Posicao(posicao.linha + 1, posicao.coluna - 2);
             if (tab.posicaoValida(pos) && podeMover(pos))
                 matriz[pos.linha, pos.coluna] = true;
 
-            //sudoeste
-            pos = new Posicao(posicao.linha + 1, posicao.coluna - 1);
+            pos = new Posicao(posicao.linha + 1, posicao.coluna + 2);
             if (tab.posicaoValida(pos) && podeMover(pos))
                 matriz[pos.linha, pos.coluna] = true;
 
-            //nordeste
-            pos = new Posicao(posicao.linha - 1, posicao.coluna + 1);
+            pos = new Posicao(posicao.linha + 2, posicao.coluna - 1);
             if (tab.posicaoValida(pos) && podeMover(pos))
                 matriz[pos.linha, pos.coluna] = true;
 
-            //sudeste
-            pos = new Posicao(posicao.linha + 1, posicao.coluna + 1);
+            pos = new Posicao(posicao.linha + 2, posicao.coluna + 1);
             if (tab.posicaoValida(pos) && podeMover(pos))
                 matriz[pos.linha, pos.coluna] = true;
 
@@ -56,7 +48,7 @@ namespace xadrez
 
         public override string ToString()
         {
-            return "R";
+            return "C";
         }
     }
 }

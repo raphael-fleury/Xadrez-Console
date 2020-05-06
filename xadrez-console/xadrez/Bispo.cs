@@ -2,28 +2,41 @@
 
 namespace xadrez
 {
-    class Torre : Peca
+    class Bispo : Peca
     {
-        public Torre(Tabuleiro tab, Cor cor) : base(tab, cor) { }
+        public Bispo(Tabuleiro tab, Cor cor) : base(tab, cor) { }
 
         public override bool[,] movimentosPossiveis()
         {
             bool[,] matriz = new bool[tab.linhas, tab.colunas];
             Posicao pos;
 
-            //acima
-            pos = new Posicao(posicao.linha - 1, posicao.coluna);
-            while(tab.posicaoValida(pos) && podeMover(pos))
+            //noroeste
+            pos = new Posicao(posicao.linha - 1, posicao.coluna - 1);
+            while (tab.posicaoValida(pos) && podeMover(pos))
             {
                 matriz[pos.linha, pos.coluna] = true;
                 if (tab.peca(pos).cor != cor)
                     break;
 
                 pos.linha--;
+                pos.coluna--;
             }
 
-            //abaixo
-            pos = new Posicao(posicao.linha + 1, posicao.coluna);
+            //nordeste
+            pos = new Posicao(posicao.linha - 1, posicao.coluna + 1);
+            while (tab.posicaoValida(pos) && podeMover(pos))
+            {
+                matriz[pos.linha, pos.coluna] = true;
+                if (tab.peca(pos).cor != cor)
+                    break;
+
+                pos.linha--;
+                pos.coluna++;
+            }
+
+            //sudoeste
+            pos = new Posicao(posicao.linha + 1, posicao.coluna - 1);
             while (tab.posicaoValida(pos) && podeMover(pos))
             {
                 matriz[pos.linha, pos.coluna] = true;
@@ -31,27 +44,18 @@ namespace xadrez
                     break;
 
                 pos.linha++;
-            }
-
-            //esquerda
-            pos = new Posicao(posicao.linha, posicao.coluna - 1);
-            while (tab.posicaoValida(pos) && podeMover(pos))
-            {
-                matriz[pos.linha, pos.coluna] = true;
-                if (tab.peca(pos).cor != cor)
-                    break;
-
                 pos.coluna--;
             }
 
-            //direita
-            pos = new Posicao(posicao.linha, posicao.coluna + 1);
+            //sudeste
+            pos = new Posicao(posicao.linha + 1, posicao.coluna + 1);
             while (tab.posicaoValida(pos) && podeMover(pos))
             {
                 matriz[pos.linha, pos.coluna] = true;
                 if (tab.peca(pos).cor != cor)
                     break;
 
+                pos.linha++;
                 pos.coluna++;
             }
 
@@ -60,7 +64,7 @@ namespace xadrez
 
         public override string ToString()
         {
-            return "T";
+            return "B";
         }
     }
 }
