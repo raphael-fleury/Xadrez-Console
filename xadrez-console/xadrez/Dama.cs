@@ -16,7 +16,7 @@ namespace xadrez
             while (tab.posicaoValida(pos) && podeMover(pos))
             {
                 matriz[pos.linha, pos.coluna] = true;
-                if (tab.peca(pos).cor != cor)
+                if (tab.peca(pos) != null)
                     break;
 
                 pos.linha--;
@@ -27,7 +27,7 @@ namespace xadrez
             while (tab.posicaoValida(pos) && podeMover(pos))
             {
                 matriz[pos.linha, pos.coluna] = true;
-                if (tab.peca(pos).cor != cor)
+                if (tab.peca(pos) != null)
                     break;
 
                 pos.linha++;
@@ -38,7 +38,7 @@ namespace xadrez
             while (tab.posicaoValida(pos) && podeMover(pos))
             {
                 matriz[pos.linha, pos.coluna] = true;
-                if (tab.peca(pos).cor != cor)
+                if (tab.peca(pos) != null)
                     break;
 
                 pos.coluna--;
@@ -49,7 +49,7 @@ namespace xadrez
             while (tab.posicaoValida(pos) && podeMover(pos))
             {
                 matriz[pos.linha, pos.coluna] = true;
-                if (tab.peca(pos).cor != cor)
+                if (tab.peca(pos) != null)
                     break;
 
                 pos.coluna++;
@@ -60,7 +60,7 @@ namespace xadrez
             while (tab.posicaoValida(pos) && podeMover(pos))
             {
                 matriz[pos.linha, pos.coluna] = true;
-                if (tab.peca(pos).cor != cor)
+                if (tab.peca(pos) != null)
                     break;
 
                 pos.linha--;
@@ -72,7 +72,7 @@ namespace xadrez
             while (tab.posicaoValida(pos) && podeMover(pos))
             {
                 matriz[pos.linha, pos.coluna] = true;
-                if (tab.peca(pos).cor != cor)
+                if (tab.peca(pos) != null)
                     break;
 
                 pos.linha--;
@@ -84,7 +84,7 @@ namespace xadrez
             while (tab.posicaoValida(pos) && podeMover(pos))
             {
                 matriz[pos.linha, pos.coluna] = true;
-                if (tab.peca(pos).cor != cor)
+                if (tab.peca(pos) != null)
                     break;
 
                 pos.linha++;
@@ -96,7 +96,7 @@ namespace xadrez
             while (tab.posicaoValida(pos) && podeMover(pos))
             {
                 matriz[pos.linha, pos.coluna] = true;
-                if (tab.peca(pos).cor != cor)
+                if (tab.peca(pos) != null)
                     break;
 
                 pos.linha++;

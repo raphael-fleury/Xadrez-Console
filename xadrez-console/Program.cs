@@ -25,8 +25,17 @@ namespace xadrez_console
 
                     Console.Clear();
                     Tela.ImprimirTabuleiro(partida.tab, posicoesPossiveis);
-
                     Console.WriteLine($"\nPeça selecionada: {peca} ({new PosicaoXadrez(origem)})");
+
+                    if (peca is Rei)
+                    {
+                        Rei rei = (Rei)peca;
+                        if (rei.roquePequenoDisponivel())
+                            Tela.Imprimir("Roque pequeno disponível!\n", ConsoleColor.Green);
+                        if (rei.roqueGrandeDisponivel())
+                            Tela.Imprimir("Roque grande disponível!\n", ConsoleColor.Green);
+                    }
+
                     Console.Write("Digite a posição de destino: ");
                     Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
                     partida.validarPosicaoDeDestino(origem, destino);
